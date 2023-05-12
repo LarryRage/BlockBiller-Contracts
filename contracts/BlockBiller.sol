@@ -156,7 +156,7 @@ contract BlockBiller is
         _subscription.token.transferFrom(_subscriber.walletAddress, address(this), _subscription.price);
         subscriptions[_subscriptionId].balance += _subscription.price;
         expiration = block.timestamp + _subscription.duration;
-        subscribers[_subscriberId] = Subscriber(_subscriptionId, _msgSender(), expiration); 
+        subscribers[_subscriberId] = Subscriber(_subscriptionId, subscribers[_subscriberId].walletAddress, expiration); 
         emit Renew(_subscriberId, _subscriptionId, _msgSender(), expiration, _subscription.price);
     }
 
